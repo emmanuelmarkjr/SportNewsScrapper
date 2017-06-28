@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load social_widgets %}
+{% block title %}{{ news_detail.title }}{% endblock title %}
+{% block content %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=915862331769133";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+     <!-- Job Detail Section Start -->
+      <section class="job-detail section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-sm-8">
+              <div class="content-area"><br/>
+                <h2 class="medium-title">News Story</h2>
+                <div class="box">
+                  <div class="text-left">
+                    <h3><a href="#">{{ news_detail.title }}</a></h3>
+                    <div class="meta">
+                      <span><a href="#"><i class="ti-world"></i> {{ news_detail.news_website }}</a></span>
+                      <span><a href="#"><i class="ti-calendar"></i> {{ news_detail.date|slice:"10" }}</a></span>
+                        <span><a href="#"><i class="ti-time"></i> {{ news_detail.date|slice:"11:16" }}</a></span>
+                      <span><a href="#"><i class="ti-eye"></i> {{ news_detail.views }}</a></span>
+                    </div>
+                  </div>
+                  <div class="clearfix">
+                      <img src="{{ news_detail.thumbnail }}" width="500px" height="300px"><br/><br/>
+                      <p>{{ news_detail.description }}</p>
+                    <a href="{{ news_detail.url }}" class="btn btn-common">Read Full Article</a>
+                      <div class="fb-comments" data-href="http://www.sporthilites.com/video/{{ news_detail.id }}" data-width="768" data-numposts="5"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="col-md-3 col-sm-4">
+            <aside>
+              <div class="sidebar"><br/>
+                <h2 class="medium-title">Trending</h2>
+                  {% for top in top_news %}
+                <div class="box">
+                  <div class="thumb">
+                    <a href="#"><img src="{{ top.thumbnail }}" alt="img"></a>
+                  </div>
+                  <div class="text-box">
+                    <h4><a href="#">{{ top.title }}</a></h4>
+                    <p>{{ top.description|slice:"100" }}</p>
+                    <p>{{ top.views }} views</p>
+                  </div>
+                  </div>
+                  {% endfor %}
+              </div>
+            </aside>
+    </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock content %}

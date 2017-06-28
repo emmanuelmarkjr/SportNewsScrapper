@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} Sporthilites - Welcome {% endblock title %}
+{% block content %}
+    <!-- Blog Section -->
+    <div id="blog" class="section">
+      <!-- Container Starts -->
+      <div class="container">
+      <br/>
+            <ul class="nav nav-tabs" style="border-bottom: none">
+                <li class="active"><a data-toggle="tab" href="#home">Latest Stories</a></li>
+                <li><a data-toggle="tab" href="#menu1">Top Stories</a></li>
+              </ul>
+      <br/>
+      <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+          {% if news %}
+        <div class="row">
+        {% for new in news %}
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+            <!-- Blog Item Starts -->
+            <div class="blog-item-wrapper">
+              <div class="blog-item-img">
+                <a href="{% url 'news_details' id=new.id %}">
+                  <img src="{{ new.thumbnail }}" alt="" height="230px">
+                </a>
+              </div>
+              <div class="blog-item-text">
+                <div class="meta-tags">
+                    <span><a href="#"><i class="ti-calendar"></i> {{ new.date|slice:"10" }}</a></span>
+                  <span class="date"><i class="ti-time"></i> {{ new.date|slice:"11:16" }}</span>
+                  <span class="comments"><a href="#"><i class="ti-eye"></i> {{ new.views }} Views</a></span>
+                    <span class="comments"><a href="#"><i class="ti-world"></i> <strong>{{ new.news_website }}</strong></a></span>
+                </div>
+                <a href="{% url 'news_details' id=new.id %}">
+                  <h3>
+                    {{ new.title }}
+                  </h3>
+                </a>
+                <p>
+                {{ new.description|slice:":200" }}
+                </p>
+                <a href="{% url 'news_details' id=new.id %}" class="btn btn-common btn-rm">Read More</a>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+            <!-- Blog Item Wrapper Ends-->
+          </div>
+              {% else %}
+              <div class="alert alert-warning">
+                  <p><strong>Oops!!!</strong>No Stories at the moment</p>
+              </div>
+      {% endif %}
+        </div>
+              <div id="menu1" class="tab-pane fade">
+                {% if top_news %}
+        <div class="row">
+        {% for top in top_news %}
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+            <!-- Blog Item Starts -->
+            <div class="blog-item-wrapper">
+              <div class="blog-item-img">
+                <a href="{% url 'news_details' id=top.id %}">
+                  <img src="{{ top.thumbnail }}" alt="" height="230px">
+                </a>
+              </div>
+              <div class="blog-item-text">
+                <div class="meta-tags">
+                    <span><a href="#"><i class="ti-calendar"></i> {{ top.date|slice:"10" }}</a></span>
+                  <span class="date"><i class="ti-time"></i> {{ top.date|slice:"11:16" }}</span>
+                  <span class="comments"><a href="#"><i class="ti-eye"></i> {{ top.views }} Views</a></span>
+                    <span class="comments"><a href="#"><i class="ti-world"></i> <strong>{{ top.news_website }}</strong></a></span>
+                </div>
+                <a href="{% url 'news_details' id=top.id %}">
+                  <h3>
+                    {{ top.title }}
+                  </h3>
+                </a>
+                <p>
+                {{ top.description|slice:":200" }}
+                </p>
+                <a href="{% url 'news_details' id=top.id %}" class="btn btn-common btn-rm">Read More</a>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+            <!-- Blog Item Wrapper Ends-->
+          </div>
+              {% else %}
+              <div class="alert alert-warning">
+                  <p><strong>Oops!!!</strong>No Stories at the moment</p>
+              </div>
+                    {% endif %}
+        </div>
+      </div>
+              </div>
+              </div>
+    </section>
+{% endblock content %}

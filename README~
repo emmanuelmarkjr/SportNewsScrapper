@@ -1,0 +1,8 @@
+This is a Sport News Web App Powered By Django(Python)
+
+It Scrapes News Stories from Sport Websites like BBC, SKYSPORTS, GOAL, DAILYMAIL, and imports on the app for quick read together with thumbnail images.
+
+This doesn't use RSS or XML or whatsoever, but makes use of Django Scraper and Celery used in setting Cron Tasks And Scheduler Tasks.
+
+Demo Link Available.
+
